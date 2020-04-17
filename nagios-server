@@ -16,7 +16,7 @@ yum -y install nagios-plugins-all
 yum -y install nagios-plugins-nrpe
 
 htpasswd -b /etc/nagios/passwd nagiosadmin nagiosadmin  #set the nagios admin password
-sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.45\/20,g' /etc/nagios/nrpe.cfg
+sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.46\/20,g' /etc/nagios/nrpe.config
 #above enables connections from your subnet, need to adjust subnet
 
 sed -i 's,dont_blame_nrpe=0,dont_blame_nrpe=1,g /etc/nagios.cfg
@@ -32,8 +32,7 @@ cd /etc/nagios/servers
 #Spin up a machine called example-a with all the nrpe plugins installed and properly configured path to
 #nagios
 #put its ip address in the address column below
-echo "command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/disk” >> /etc/nagios/nrpe.cfg
-echo "command[check_mem]=/usr/lib64/nagios/plugins/check_mem.sh -w 80 -c 90" >> /etc/nagios/nrpe.cfg
+
 echo '# Define a host for an example-a machine
 define host{
   use                   linux-server
