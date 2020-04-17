@@ -32,7 +32,8 @@ cd /etc/nagios/servers
 #Spin up a machine called example-a with all the nrpe plugins installed and properly configured path to
 #nagios
 #put its ip address in the address column below
-
+echo "command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/disk” >> /etc/nagios/nrpe.cfg
+echo "command[check_mem]=/usr/lib64/nagios/plugins/check_mem.sh -w 80 -c 90" >> /etc/nagios/nrpe.cfg
 echo '# Define a host for an example-a machine
 define host{
   use                   linux-server
