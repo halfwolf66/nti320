@@ -17,7 +17,7 @@ yum -y install nagios-plugins-all
 yum -y install nagios-plugins-nrpe
 
 htpasswd -b /etc/nagios/passwd nagiosadmin nagiosadmin      #set the nagios admin password
-sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.47\/20, g' /etc/nagios/nrpe.cfg
+sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.48\/20, g' /etc/nagios/nrpe.cfg
 #enables connections from the subnet please adjust to your subnet.
 
 sed -i 's,dont_blame_nrpe=0,dont_blame_nrpe=1,g' /etc/nagios/nrpe.cfg
