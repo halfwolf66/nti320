@@ -8,7 +8,7 @@ wget -O /usr/lib64/nagios/plugins/check_mem.sh https://raw.githubusercontent.com
 chmod +x /usr/lib64/nagios/plugins/check_mem.sh 
 systemctl enable nrpe 
 systemctl start nrpe
-sed -i 's/allowed_hosts=127.0.0.l/allowed_hosts=127.0.0.1, 10.128.0.47,/g' /etc/nagios/nrpe.cfg
+sed -i 's/allowed_hosts=127.0.0.l/allowed_hosts=127.0.0.1, 10.128.0.48,/g' /etc/nagios/nrpe.cfg
 sed -i "s,command[check_hdal]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/hdal,command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/sdal,g" /etc/nagios/nrpe.cfg 
 systemctl restart nrpe
 echo "command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/disk" >> /etc/nagios/nrpe.cfg
