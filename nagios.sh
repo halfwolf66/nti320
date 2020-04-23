@@ -29,15 +29,14 @@ sed -i 's,#cfg_dir=/etc/nagios/servers,cfg_dir=/etc/nagios/servers,g' /etc/nagio
 echo 'define command{
                           command_name check_nrpe
                           command_line /usr/lib64/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
-                          }' >> /etc/nagios/objects/commands.cfg
-                          
-systemctl restart nagios
+                          }' >> /etc/nagios/objects/commands.cfg                          
+
 
 yum -y install wget
 cd /etc/nagios
 wget https://raw.githubusercontent.com/nic-instruction/hello-nti-320/master/generate_config.sh
-
-
+bash generate_config.sh example 10.128.0.48
+systemctl restart nagios
 
 # Now take a break, and spin up a machine called example-a with all the nrpe plugins installed and a propperly configured path 
 # to nagios
