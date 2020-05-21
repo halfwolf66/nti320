@@ -1,0 +1,4 @@
+#This will check on whatever plugin you want it to check on. This one checks on nti_sanity and the ip address 
+#is the ip address of the client. make sure it's executable by using root>chmod +x /usr/lib64/nagios/plugins/check_nrpe
+
+/usr/lib64/nagios/plugins/check_nrpe -H 10.128.0.48 -c nti_sanity
