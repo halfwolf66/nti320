@@ -3,3 +3,5 @@ postgres > point to centos, not post gres
 
 Post gres update
 https://github.com/nic-instruction/NTI-320/blob/master/postgres_on_centos_7.sh
+
+Nagios and Cacti go at the end of the script since they are monitoring everything else
