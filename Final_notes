@@ -1,2 +1,5 @@
 Add these to spinup cacti, nagios, update 
 postgres > point to centos, not post gres
+
+Post gres update
+https://github.com/nic-instruction/NTI-320/blob/master/postgres_on_centos_7.sh
