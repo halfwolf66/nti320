@@ -1,0 +1,109 @@
+#!/bin/bash
+
+gcloud compute instances create rsyslog \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/logsrv.sh \
+--private-network-ip=10.128.0.2
+
+sleep 30
+
+gcloud compute instances create postgres \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/postgres_on_centos_7.sh \
+--private-network-ip=10.128.0.3
+
+sleep 30
+
+gcloud compute instances create ldap-srv \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/ldap-srv.sh \
+--private-network-ip=10.128.0.4
+
+sleep 30
+
+gcloud compute instances create django-srv \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/NTI-310/django.sh \
+--private-network-ip=10.128.0.5
+
+sleep 30
+
+gcloud compute instances create nfs-srv \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/NTI-310/NFS-Server.sh \
+--private-network-ip=10.128.0.8
+
+sleep 30
+
+gcloud compute instances create ubuntu-client-1 \
+--image-family ubuntu-1804-lts \
+--image-project ubuntu-os-cloud \
+--zone us-central1-a \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/ubuntu-client-final \
+--private-network-ip=10.128.0.9
+
+sleep 30
+
+gcloud compute instances create ubuntu-client-2 \
+--image-family ubuntu-1804-lts \
+--image-project ubuntu-os-cloud \
+--zone us-central1-a \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/ubuntu-client-final \
+--private-network-ip=10.128.0.10
+
+sleep 30
+
+gcloud compute instances create cacti-srv \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/cacti/cacti_server.sh \
+--private-network-ip=10.128.0.11
+
+sleep 30
+
+gcloud compute instances create nagios-srv \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/nagios.sh \
+--private-network-ip=10.128.0.12
+
+sleep 120
+
+bash /home/irishman253/NTI320/automation/for_loop.sh
