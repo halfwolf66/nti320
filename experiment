@@ -55,7 +55,7 @@ gcloud compute instances create nfs-srv \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/home/irishman253/NIT-310/NTI-310/NFS-Server.sh \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/NTI-310/nfsserver \
 --private-network-ip=10.128.0.8
 
 sleep 30
