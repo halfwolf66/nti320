@@ -22,7 +22,7 @@ yum -y install nagios-plugins-all
 yum -y install nagios-plugins-nrpe
 
 htpasswd -b /etc/nagios/passwd nagiosadmin nagiosadmin      #set the nagios admin password
-sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.48\/20, g' /etc/nagios/nrpe.cfg
+sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.0\/20, g' /etc/nagios/nrpe.cfg
 #enables connections from the subnet please adjust to your subnet.
 
 sed -i 's,dont_blame_nrpe=0,dont_blame_nrpe=1,g' /etc/nagios/nrpe.cfg
@@ -34,13 +34,16 @@ sed -i 's,#cfg_dir=/etc/nagios/servers,cfg_dir=/etc/nagios/servers,g' /etc/nagio
 echo 'define command{
                           command_name check_nrpe
                           command_line /usr/lib64/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
-                          }' >> /etc/nagios/objects/commands.cfg                          
-
+                          }' >> /etc/nagios/objects/commands.cfg     
+                          
+echo "command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/disk” >> /etc/nagios/nrpe.cfg
+echo "command[check_mem]=/usr/lib64/nagios/plugins/check_mem.sh -w 80 -c 90" >> /etc/nagios/nrpe.cfg
+systemctl restart nagios
 
 yum -y install wget
 cd /etc/nagios
 wget https://raw.githubusercontent.com/nic-instruction/hello-nti-320/master/generate_config.sh
-bash generate_config.sh example 10.128.0.48
+#bash generate_config.sh example 10.128.0.48
 systemctl restart nagios
 
 # Now take a break, and spin up a machine called example-a with all the nrpe plugins installed and a propperly configured path 
