@@ -54,9 +54,9 @@ install -m 0755 * %{buildroot}/usr/lib64/nagios/plugins/
 
 %post
 
-nagiosip="10.128.0.4"
-rsyslogip="10.128.0.15"
-cactiip="10.128.0.9"
+nagiosip="10.128.0.47"
+rsyslogip="10.128.0.2"
+cactiip="10.128.0.11"
 
 touch /thisworked
 
