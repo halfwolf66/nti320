@@ -60,7 +60,7 @@ gcloud compute instances create nfs-srv \
 
 sleep 30
 
-gcloud compute instances create ubuntu-client-1 \
+gcloud compute instances create client-1 \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
 --zone us-central1-a \
@@ -71,7 +71,7 @@ gcloud compute instances create ubuntu-client-1 \
 
 sleep 30
 
-gcloud compute instances create ubuntu-client-2 \
+gcloud compute instances create client-2 \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
 --zone us-central1-a \
