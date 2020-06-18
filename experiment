@@ -106,4 +106,4 @@ gcloud compute instances create nagios-srv \
 
 sleep 120
 
-bash /home/irishman253/NTI320/automation/for_loop.sh
+bash /home/irishman253/nti320/for_loop.sh
