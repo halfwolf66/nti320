@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sudo su
-
 yum -y install nagios
 systemctl enable nagios
 systemctl start nagios
