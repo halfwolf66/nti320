@@ -2,34 +2,33 @@
 
 sudo su
 
-yum -y install nagios           #install, start and enable nagios
+yum -y install nagios
 systemctl enable nagios
 systemctl start nagios
 
 chmod 775 /etc/nagios/servers
 usermod -a -G root irishman253
 
-setenforce 0                    # turn off SELinux, so it doesn't trip us up
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config  #disable it perminatly
+setenforce 0
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
-systemctl enable httpd          # Enable and start apache
+systemctl enable httpd
 systemctl start httpd
 
-yum -y install nrpe             #install, enable, and start nrpe, the nagios client
+yum -y install nrpe
 systemctl enable nrpe
 systemctl start nrpe
 yum -y install nagios-plugins-all
 yum -y install nagios-plugins-nrpe
 
-htpasswd -b /etc/nagios/passwd nagiosadmin nagiosadmin      #set the nagios admin password
+htpasswd -b /etc/nagios/passwd nagiosadmin nagiosadmin
 sed -i 's,allowed_hosts=127.0.0.1,allowed_hosts=127.0.0.1\, 10.128.0.0\/20, g' /etc/nagios/nrpe.cfg
-#enables connections from the subnet please adjust to your subnet.
+
 
 sed -i 's,dont_blame_nrpe=0,dont_blame_nrpe=1,g' /etc/nagios/nrpe.cfg
-#enables NRPE monitoring
+
 
 mkdir /etc/nagios/servers
-#create a directory for our server configuration and enable it in the config file
 sed -i 's,#cfg_dir=/etc/nagios/servers,cfg_dir=/etc/nagios/servers,g' /etc/nagios/nagios.cfg
 echo 'define command{
                           command_name check_nrpe
