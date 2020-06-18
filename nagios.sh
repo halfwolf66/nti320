@@ -35,11 +35,11 @@ echo 'define command{
                           }' >> /etc/nagios/objects/commands.cfg                          
 
 
-#yum -y install wget
-#cd /etc/nagios
-#wget https://raw.githubusercontent.com/nic-instruction/hello-nti-320/master/generate_config.sh
-#bash generate_config.sh example 10.128.0.48
-#systemctl restart nagios
+yum -y install wget
+cd /etc/nagios
+wget https://raw.githubusercontent.com/nic-instruction/hello-nti-320/master/generate_config.sh
+bash generate_config.sh example 10.128.0.48
+systemctl restart nagios
 
 # Now take a break, and spin up a machine called example-a with all the nrpe plugins installed and a propperly configured path 
 # to nagios
