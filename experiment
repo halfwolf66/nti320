@@ -19,7 +19,7 @@ gcloud compute instances create postgres \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/home/irishman253/NIT-310/postgres_COS7.sh \
+--metadata-from-file startup-script=/home/irishman253/NIT-310/postgres \
 --private-network-ip=10.128.0.3
 
 sleep 30
