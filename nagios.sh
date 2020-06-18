@@ -6,8 +6,7 @@ yum -y install nagios
 systemctl enable nagios
 systemctl start nagios
 
-chmod 775 /etc/nagios/servers
-usermod -a -G root irishman253
+
 
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
@@ -38,6 +37,9 @@ echo 'define command{
 echo "command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w 20% -c 10% -p /dev/disk” >> /etc/nagios/nrpe.cfg
 echo "command[check_mem]=/usr/lib64/nagios/plugins/check_mem.sh -w 80 -c 90" >> /etc/nagios/nrpe.cfg
 systemctl restart nagios
+
+chmod 775 /etc/nagios/servers
+usermod -a -G root irishman253
 
 yum -y install wget
 cd /etc/nagios
