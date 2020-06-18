@@ -102,7 +102,7 @@ gcloud compute instances create nagios-srv \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/irishman253/NIT-310/nagios.sh \
---private-network-ip=10.128.0.12
+--private-network-ip=10.128.0.47
 
 sleep 120
 
