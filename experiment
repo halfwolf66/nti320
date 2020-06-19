@@ -94,7 +94,7 @@ gcloud compute instances create cacti-srv \
 
 sleep 30
 
-gcloud compute instances create nagios-srv \
+gcloud compute instances create nagios \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-central1-a \
